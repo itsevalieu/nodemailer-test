@@ -40,10 +40,6 @@ app.post("/api/post", function(req,res) {
 	console.log("Sending email...");
 
 	var mailOptions = {
-		// from: req.body.email,
-		// to: "itsevalieu@gmail.com",
-		// subject: req.body.subject,
-		// text: req.body.text
 		from: req.body.from,
 		to: req.body.to,
 		subject: req.body.subject,

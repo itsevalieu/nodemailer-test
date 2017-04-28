@@ -16,6 +16,7 @@ var mail = {
       body: mail.body
     });
   }
+
 };
 
 module.exports = mail;
