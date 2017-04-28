@@ -17,11 +17,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-app.use(express.static(path.join(__dirname,"public")));
+app.use(express.static(path.join(__dirname,"src")));
+
 
 // Middleware for Routes
 // ======================================
-// var mail= require("./mail.js");
+// var mail = require("./src/mail.js");
 // app.use("/mail", mail);
 
 var smtpTransport = nodemailer.createTransport({
@@ -33,20 +34,20 @@ var smtpTransport = nodemailer.createTransport({
 	tls: {rejectUnauthorized: false},
 	debug: true
 });
-app.use("/", function(req, res) {
-	console.log("get index");
-	res.render("index");
-});
-app.post("/", function(req,res) {
+
+console.log("attempting post");
+app.post("/api/post", function(req,res) {
+	console.log("Sending email...");
+
 	var mailOptions = {
-		from: req.body.email,
-		to: "itsevalieu@gmail.com",
-		subject: req.body.subject,
-		text: req.body.text
-		// from: "'ievalieu@gmail.com' <ievalieu@gmail.com>",
+		// from: req.body.email,
 		// to: "itsevalieu@gmail.com",
-		// subject: "Test Email",
-		// text: "Test Email"
+		// subject: req.body.subject,
+		// text: req.body.text
+		from: req.body.from,
+		to: req.body.to,
+		subject: req.body.subject,
+		text: req.body.body
 	};
 
 	console.log(mailOptions);
@@ -62,6 +63,9 @@ app.post("/", function(req,res) {
 	});
 });
 
+app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, './src/index.html'));
+});
 
 // Listener
 // ======================================
