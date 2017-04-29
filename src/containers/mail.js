@@ -2,6 +2,7 @@ var express = require("express");
 var axios = require("axios");
 // var Router = express.Router();
 var nodemailer = require("nodemailer");
+var fs = require("fs");
 
 var mail = {
   getMail: function() {

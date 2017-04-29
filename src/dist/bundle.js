@@ -27927,6 +27927,7 @@
 	var axios = __webpack_require__(389);
 	// var Router = express.Router();
 	var nodemailer = __webpack_require__(414);
+	var fs = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"fs\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var mail = {
 	  getMail: function getMail() {
